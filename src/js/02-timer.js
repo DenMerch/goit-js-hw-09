@@ -1,7 +1,9 @@
 // Описаний в документації
 import flatpickr from "flatpickr";
+import Notiflix from 'notiflix';
 // Додатковий імпорт стилів
 import "flatpickr/dist/flatpickr.min.css";
+import "notiflix/dist/notiflix-3.2.6.min.css"
 const currentTime = Date.now();
 const btnStart = document.querySelector("[data-start]");
 btnStart.disabled = true;
@@ -13,7 +15,9 @@ const options = {
     minuteIncrement: 1,
     onClose(selectedDates) {
         if (selectedDates[0] < currentTime) {
-            window.alert("Please choose a date in the future");
+            // window.alert("Please choose a date in the future");
+            Notiflix.Notify.warning("Please choose a date in the future");
+
             return
         }
         btnStart.disabled = false;
@@ -34,9 +38,9 @@ btnStart.addEventListener("click", () => {
             return
         }
         outputValue[0].textContent = convertMs(timeValue).days;
-        outputValue[1].textContent = convertMs(timeValue).hours;
-        outputValue[2].textContent = convertMs(timeValue).minutes;
-        outputValue[3].textContent = convertMs(timeValue).seconds;
+        outputValue[1].textContent = convertMs(timeValue).hours.toString().padStart("2", 0);
+        outputValue[2].textContent = convertMs(timeValue).minutes.toString().padStart("2", 0);
+        outputValue[3].textContent = convertMs(timeValue).seconds.toString().padStart("2", 0);
         timeValue -= 1000;
 
     }, 1000)
