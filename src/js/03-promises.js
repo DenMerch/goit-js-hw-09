@@ -35,6 +35,7 @@ form.addEventListener("submit", (event) => {
         });
       if (position === amount) {
         clearInterval(timerId);
+        position = 0;
         return;
       }
       delay += step;
