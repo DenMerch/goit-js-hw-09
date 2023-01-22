@@ -32,7 +32,7 @@ form.addEventListener("submit", (event) => {
         .then((position, delay) => {
         })
         .catch((position, delay) => {
-        });
+        }).finally(() => { console.log("finaly"); });
       if (position === amount) {
         clearInterval(timerId);
         position = 0;
